@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main id="main-container">
+        <h1 id="Heading">Calculator</h1>
+        <section id="display-section">0</section>
+        <section id="buttons-sections">
+            <section id="operators-section">
+                <button class="operator" id="+">➕</button>
+                <button class="operator" id="-">➖</button>
+                <button class="operator" id="*">✖️</button>
+                <button class="operator" id="/">➗</button>
+            </section>
+            <section id="numbers-section">
+                <button class="number" id="1">1</button>
+                <button class="number" id="2">2</button>
+                <button class="number" id="3">3</button>
+                <button class="number" id="4">4</button>
+                <button class="number" id="5">5</button>
+                <button class="number" id="6">6</button>
+                <button class="number" id="7">7</button>
+                <button class="number" id="8">8</button>
+                <button class="number" id="9">9</button>
+                <button class="number" id="0">0</button>
+            </section>
+            <section id="equal-and-back">
+                <button class="compute" id="compute">🟰</button>
+            </section>
+        </section>
+    </main>
+    <script>
+        const displaySection = document.querySelector("#display-section");
+        const buttons = document.querySelectorAll("button");
+
+        let operator = "";
+        let leftOperand = "";
+        let nextNumber = "";
+
+        buttons.forEach(button => button.addEventListener('click', handleClick));
+
+        function handleClick(e) {
+            const button = e.target;
+
+            switch (button.className) {
+                case "number":
+                    if (operator) {
+                        nextNumber += button.id; 
+                    } else {
+                        leftOperand += button.id; 
+                    }
+                    updateDisplay();
+                    break;
+
+                case "operator":
+                    if (leftOperand) { 
+                        operator = button.id;
+                        updateDisplay();
+                    }
+                    break;
+
+                case "compute":
+                    if (leftOperand && nextNumber && operator) { 
+                        compute();
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        function updateDisplay() {
+            
+            displaySection.textContent = `${leftOperand || "0"} ${operator} ${nextNumber}`.trim();
+        }
+
+        function compute() {
+            const num1 = parseFloat(leftOperand);
+            const num2 = parseFloat(nextNumber);
+            let result;
+
+            switch (operator) {
+                case "+": result = num1 + num2; break;
+                case "-": result = num1 - num2; break;
+                case "*": result = num1 * num2; break;
+                case "/": result = num1 / num2; break;
+                default: result = "Error";
+            }
+
+            
+            displaySection.textContent = `${leftOperand} ${operator} ${nextNumber} = ${result}`;
+
+            
+            leftOperand = result.toString();
+            nextNumber = "";
+            operator = "";
+        }
+    </script>
+</body>
+</html>

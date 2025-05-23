@@ -1,0 +1,58 @@
+
+    body{
+        background-color: rgb(252, 252, 252);
+        width: 600px;
+        height: 100vh;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h1#Heading{
+        font-family: monospace;
+        text-align: center;
+        font-size:xxx-large;
+        color: orange;
+    }
+
+    main#main-container{
+        padding: 20px;
+        box-shadow: 0.5px 0.5px 4px;
+        border-radius: 20px;
+        background-color: white;
+    }
+
+    section#display-section{
+        height: 40px;
+        border: 10px solid yellow;
+        border-radius: 20px;
+        margin: 10px auto;
+        display: flex;
+        align-items: center;
+        font-size: large;
+        font-family: monospace;
+        padding: 5px 5px;
+    }
+
+    section#operators-section{
+        display: flex;
+        padding: 5px;
+        margin: 10px auto;
+        justify-content: space-around;
+    }
+
+    section#operators-section button, 
+    section#numbers-section button,
+    section#equal-and-back button{
+        padding: 4px;
+        border-radius: 10px;
+        font-size: large;
+    }
+
+    section#numbers-section{
+        margin-bottom: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 5px;
+    }
